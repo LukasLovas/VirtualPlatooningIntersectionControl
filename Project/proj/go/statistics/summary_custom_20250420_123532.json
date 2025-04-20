@@ -1,0 +1,18 @@
+{
+  "algorithmType": "custom",
+  "totalSteps": 1001,
+  "averageVehicles": 8,
+  "totalUniqueVehicles": 0,
+  "finalThroughput": 0,
+  "averageSpeed": 8.21571602532178,
+  "averageWaitTime": 0,
+  "maxWaitTime": 0,
+  "averageTravelTime": 0,
+  "maxTravelTime": 0,
+  "averageIntersectionQueue": 1,
+  "averagePlatoonSize": 0,
+  "maxPlatoonSize": 0,
+  "averageTrafficDensity": 0.007914209963990344,
+  "simulationRuntime": 0.0650795,
+  "timestamp": "2025-04-20T12:35:32"
+}

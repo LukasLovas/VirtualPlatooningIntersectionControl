@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2025-03-31 21:23:30 by Eclipse SUMO netedit Version 1.21.0
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+	<route id="from_up_to_left" edges="down_incoming left_leaving"/>
+	<route id="from_up_to_down" edges="down_incoming down_leaving"/>
+	<route id="from_up_to_right" edges="down_incoming right_leaving"/>
+    <route id="from_right_to_left" edges="left_incoming left_leaving"/>
+    <route id="from_right_to_up" edges="left_incoming up_leaving"/>
+    <route id="from_right_to_down" edges="left_incoming down_leaving"/>
+    <route id="from_left_to_right" edges="right_incoming right_leaving"/>
+    <route id="from_left_to_up" edges="right_incoming up_leaving"/>
+    <route id="from_left_to_down" edges="right_incoming down_leaving"/>
+    <route id="from_down_to_up" edges="up_incoming up_leaving"/>
+    <route id="from_down_to_left" edges="up_incoming left_leaving"/>
+    <route id="from_down_to_right" edges="up_incoming right_leaving"/>
+</routes>

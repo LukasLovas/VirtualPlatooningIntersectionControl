@@ -1,0 +1,18 @@
+{
+  "algorithmType": "sumo",
+  "totalSteps": 1000,
+  "averageVehicles": 9.833333333333334,
+  "totalUniqueVehicles": 0,
+  "finalThroughput": 49,
+  "averageSpeed": 8.788307675753883,
+  "averageWaitTime": 0,
+  "maxWaitTime": 0,
+  "averageTravelTime": 0,
+  "maxTravelTime": 0,
+  "averageIntersectionQueue": 0.5362318840579711,
+  "averagePlatoonSize": 0.391304347826087,
+  "maxPlatoonSize": 2,
+  "averageTrafficDensity": 0.00972788308073812,
+  "simulationRuntime": 9.2209303,
+  "timestamp": "2025-04-20T12:44:25"
+}

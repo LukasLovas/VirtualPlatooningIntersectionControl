@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUMO-GO Traffic Simulation</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>SUMO-GO Traffic Simulation</h1>
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="label">Time Step:</span>
+                <span id="time-step" class="value">0</span>
+            </div>
+            <div class="status-item">
+                <span class="label">Algorithm:</span>
+                <span id="algorithm" class="value">Custom</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="controls-panel">
+            <h2>Algorithm Control</h2>
+            
+            <div class="algorithm-section">
+                <div class="algo-card">
+                    <div class="algo-header">
+                        <h3>Current Algorithm</h3>
+                        <span id="current-algorithm-badge" class="algo-badge custom">Custom</span>
+                    </div>
+                    <div class="algo-content">
+                        <div class="form-group">
+                            <label for="algorithm-select">Switch to:</label>
+                            <select id="algorithm-select" class="fancy-select">
+                                <option value="custom">Custom Algorithm</option>
+                                <option value="sumo">SUMO Algorithm</option>
+                            </select>
+                        </div>
+                        <button id="btn-change-algo" class="control-btn">Change Algorithm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="metrics-panel">
+            <h2>Live Metrics</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>Vehicles</h3>
+                    <div id="vehicle-count" class="metric-value">0</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Platoons</h3>
+                    <div id="platoon-count" class="metric-value">0</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Avg Speed</h3>
+                    <div id="average-speed" class="metric-value">0 m/s</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Throughput</h3>
+                    <div id="throughput" class="metric-value">0</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Intersections</h3>
+                    <div id="intersection-count" class="metric-value">0</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Avg Wait</h3>
+                    <div id="avg-wait-time" class="metric-value">0 s</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Queue Size</h3>
+                    <div id="queue-size" class="metric-value">0</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Traffic Density</h3>
+                    <div id="traffic-density" class="metric-value">0%</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="live-chart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="stats-panel">
+            <h2>Performance Comparison</h2>
+            <div class="comparison-layout">
+                <div class="column-container">
+                    <h3>SUMO Algorithm Stats</h3>
+                    <div class="file-list" id="sumo-file-list">
+                        <p>Loading SUMO statistics files...</p>
+                    </div>
+                </div>
+                <div class="column-container">
+                    <h3>Custom Algorithm Stats</h3>
+                    <div class="file-list" id="custom-file-list">
+                        <p>Loading Custom statistics files...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="throughput">Throughput</button>
+                <button class="tab-btn" data-tab="wait-times">Wait Times</button>
+                <button class="tab-btn" data-tab="speed">Average Speed</button>
+                <button class="tab-btn" data-tab="platoons">Platoons</button>
+            </div>
+            
+            <div class="tab-content">
+                <div id="throughput-tab" class="tab-pane active">
+                    <div class="chart-container">
+                        <canvas id="throughput-chart"></canvas>
+                    </div>
+                </div>
+                <div id="wait-times-tab" class="tab-pane">
+                    <div class="chart-container">
+                        <canvas id="wait-times-chart"></canvas>
+                    </div>
+                </div>
+                <div id="speed-tab" class="tab-pane">
+                    <div class="chart-container">
+                        <canvas id="speed-chart"></canvas>
+                    </div>
+                </div>
+                <div id="platoons-tab" class="tab-pane">
+                    <div class="chart-container">
+                        <canvas id="platoons-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
