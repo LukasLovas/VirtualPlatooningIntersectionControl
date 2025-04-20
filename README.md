@@ -4,7 +4,7 @@ My own bachelors thesis project implementation, where I use SUMO simulator to si
 
 Author: Lukáš Lovás
 
-In the go folder run "go run ."
-In your local sumo folder run "sumo-gui --remote-port 1337 -c <path-to-sumo-folder-city.sumocfg>"
-In the python folder run "python main.py"
-localhost:8080 - statistical interface (!!WORK IN PROGRESS!!)
+- In the go folder run "go run ."
+- In your local sumo folder run "sumo-gui --remote-port 1337 -c <path-to-sumo-folder-city.sumocfg>"
+- In the python folder run "python main.py"
+- localhost:8080 - live statistics interface (!!WORK IN PROGRESS!!)
