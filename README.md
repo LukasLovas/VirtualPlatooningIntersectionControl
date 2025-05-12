@@ -38,7 +38,7 @@ The system consists of three main components:
 
 1. **SUMO Simulator**: Visualizes and simulates the physical movement of vehicles
 2. **Python Middleware**: Collects vehicle data from SUMO and communicates with the Traffic Manager
-3. **Go Traffic Manager**: Implements the Virtual Platooning algorithm and handles decision-making
+3. **Go Server**: Implements the Virtual Platooning algorithm and handles decision-making
 
 ```
 ┌────────────────┐      ┌─────────────────┐      ┌───────────────┐
@@ -84,7 +84,7 @@ The system consists of three main components:
    sumo-gui -c sumo/city.sumocfg --remote-port 1337
    ```
 
-2. Run the Go Traffic Manager:
+2. Run the Go Server:
    ```bash
    cd go
    ./traffic-manager
@@ -130,7 +130,7 @@ go run main.go --benchmark --algorithm=custom --duration=1000
 
 Available options:
 - `--benchmark`: Enable benchmark mode
-- `--algorithm`: Algorithm to use (`custom` or `sumo`)
+- `--algorithm`: Algorithm to use (`custom` meaning custom Virtual platooning implementation or `sumo` for basic Sumo behavior)
 - `--duration`: Number of simulation steps
 
 Benchmark results are saved in the `statistics` directory in CSV and JSON formats.
