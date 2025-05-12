@@ -86,11 +86,6 @@ The system consists of three main components:
 
 2. Run the Go Server:
    ```bash
-   cd go
-   ./traffic-manager
-   ```
-   Or directly with Go:
-   ```bash
    go run main.go
    ```
 
