@@ -4,7 +4,7 @@ My own bachelors thesis project implementation, where I use SUMO simulator to si
 
 Author: Lukáš Lovás
 
-#Quick start
+# Quick start
 
 - In the go folder run "go run main.go"
   Optional: --benchmark - turns on benchmark mode that will export statistics into csv every <--duration> steps
