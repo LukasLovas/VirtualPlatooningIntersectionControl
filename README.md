@@ -121,53 +121,67 @@ Visualization: Current state is displayed in SUMO and the web dashboard
 
 Key Methods
 The main processing cycle in the Go server is implemented in the TrafficManager.Update() method, which calls these key methods in each iteration:
-Update(): 
+## Update(): 
+```go
+func (tm *TrafficManager) Update() {
+	tm.TimeStep++
+
+  tm.UpdatePlatoons()
+	tm.EstimatePlatoonStability()
+	tm.ReservePlatoonIntersectionSlots()
+	tm.ManageIntersections()
+	tm.SynchronizeSpeeds()
+	tm.AdjustSpeedForTrafficDensity()
+
+	if tm.BenchmarkMode {
+		tm.UpdateVehicleThroughput()
+		tm.RecordBenchmarkMetrics()
+	}
+```
 
 
 
 
-UpdatePlatoons()
+`UpdatePlatoons()`
 
-Updates leader-follower relationships between vehicles
-Forms and updates platoons based on vehicle relationships
-Cleans up empty or invalid platoons
-Checks for transitions between road segments
-Consolidates nearby platoons for optimization
+-Updates leader-follower relationships between vehicles
+-Forms and updates platoons based on vehicle relationships
+-Cleans up empty or invalid platoons
+-Checks for transitions between road segments
+-Consolidates nearby platoons for optimization
 
-EstimatePlatoonStability()
+`EstimatePlatoonStability()`
 
-Analyzes platoon stability based on how long vehicles remain in the same platoon
-Allows higher speeds for stable platoons
+-Analyzes platoon stability based on how long vehicles remain in the same platoon
+-Allows higher speeds for stable platoons
 
-ReservePlatoonIntersectionSlots()
+`ReservePlatoonIntersectionSlots()`
 
-Identifies platoons approaching intersections
-Estimates time of arrival at intersections
-Creates time-slot reservations for crossing
-Checks for conflicts with existing reservations
+-Identifies platoons approaching intersections
+-Estimates time of arrival at intersections
+-Creates time-slot reservations for crossing
+-Checks for conflicts with existing reservations
 
-ManageIntersections()
+`ManageIntersections()`
 
-Updates platoon waiting times at intersections
-Assigns priority to platoons with long waiting times
-Processes reservations and checks for conflicts
-Grants priority to platoons based on scoring
-Allows concurrent crossing for non-conflicting trajectories
+-Updates platoon waiting times at intersections
+-Assigns priority to platoons with long waiting times
+-Processes reservations and checks for conflicts
+-Grants priority to platoons based on scoring
+-Allows concurrent crossing for non-conflicting trajectories
 
-SynchronizeSpeeds()
+`SynchronizeSpeeds()`
 
-Sets vehicle speeds based on distance to the vehicle ahead
-Assigns optimal speed to platoon leaders with reservations
-Synchronizes follower speeds with their leader
-Reduces speed for vehicles without priority
+-Sets vehicle speeds based on distance to the vehicle ahead
+-Assigns optimal speed to platoon leaders with reservations
+-Synchronizes follower speeds with their leader
+-Reduces speed for vehicles without priority
 
-AdjustSpeedForTrafficDensity()
+`AdjustSpeedForTrafficDensity()`
 
-Adjusts speeds based on current traffic density
-Allows higher speeds for larger platoons in lighter traffic
-Dynamically adjusts maximum allowed speeds based on conditions
-
-The Python middleware implements a similar cycle that handles the SUMO simulation and communication with the Go server.
+-Adjusts speeds based on current traffic density
+-Allows higher speeds for larger platoons in lighter traffic
+-Dynamically adjusts maximum allowed speeds based on conditions
 
    
 ## 🔧 Configuration
