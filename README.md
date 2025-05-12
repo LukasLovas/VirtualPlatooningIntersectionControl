@@ -63,7 +63,7 @@ The system consists of three main components:
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/yourusername/v2x-platooning.git](https://github.com/LukasLovas/VirtualPlatooningIntersectionControl.git)
+   git clone https://github.com/LukasLovas/VirtualPlatooningIntersectionControl.git
    ```
 
 2. Install Python dependencies:
