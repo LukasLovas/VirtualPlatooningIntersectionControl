@@ -23,7 +23,7 @@ Author: Lukáš Lovás
 
 V2X-Platooning is a traffic management system that implements Virtual Platooning algorithms to optimize traffic flow at intersections. The system uses vehicle-to-everything (V2X) communication to coordinate the movement of connected vehicles, reducing congestion and improving efficiency.
 
-## 🚀 Features
+## Features
 
 - **Virtual Platooning**: Dynamic grouping of vehicles for coordinated intersection traversal
 - **Intersection Management**: Priority-based reservation system for intersection crossings
@@ -32,7 +32,7 @@ V2X-Platooning is a traffic management system that implements Virtual Platooning
 - **Performance Analysis**: Comprehensive statistics collection and benchmarking tools
 - **Multiple Intersection Types**: Support for various intersection topologies
 
-## 📋 System Architecture
+## System Architecture
 
 The system consists of three main components:
 
@@ -57,13 +57,13 @@ The system consists of three main components:
 - Python 3.8+
 - SUMO 1.20+
 - TraCI Python library
+- Gorilla Websocket Go library
 
 ### Setup
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/v2x-platooning.git
-   cd v2x-platooning
+   git clone [https://github.com/yourusername/v2x-platooning.git](https://github.com/LukasLovas/VirtualPlatooningIntersectionControl.git)
    ```
 
 2. Install Python dependencies:
@@ -71,32 +71,42 @@ The system consists of three main components:
    pip install traci sumolib
    ```
 
-3. Build the Go application:
+3. Install Go dependencies: 
    ```bash
-   cd go
+   go mod download
+   ```
+   Note: This will install all dependencies required in go.mod file
+
+4. Build the Go application:
+   ```bash
    go build -o traffic-manager
    ```
-
+   or directly run the application by:
+    ```bash
+    go run main.go
+    ```
 ## 🚗 Running the Simulation
 
 1. Start the SUMO simulator with the TraCI interface:
    ```bash
    sumo-gui -c sumo/city.sumocfg --remote-port 1337
    ```
+   Note: from /bin in your SUMO download directory
 
 2. Run the Go Server:
    ```bash
    go run main.go
    ```
-
+   or if previously built:
+   ```bash
+   go run traffic-manager
+   ``` 
 3. Start the Python middleware:
    ```bash
-   cd python
    python main.py
    ```
 
-4. Access the web dashboard at: http://localhost:8080 (Work in progress)
-
+   
 ## 🔧 Configuration
 
 The system can be configured using various parameters:
@@ -105,7 +115,7 @@ The system can be configured using various parameters:
 
 - `DetectionDistance`: Maximum distance for vehicle detection (default: 50.0)
 - `FollowingGap`: Optimal gap between vehicles in a platoon (default: 10.0)
-- `MaxRegularSpeed`: Maximum speed for regular vehicles (default: 16.7 m/s)
+- `MaxRegularSpeed`: Maximum speed for regular vehicles (default: 15 m/s)
 - `MaxPlatoonSpeed`: Maximum speed for platoons (default: 19.4 m/s)
 - `StablePlatoonSpeed`: Maximum speed for stable platoons (default: 22.2 m/s)
 
@@ -130,7 +140,7 @@ Available options:
 
 Benchmark results are saved in the `statistics` directory in CSV and JSON formats.
 
-## 🌟 Intersection Types
+## Intersection Types
 
 The system supports multiple intersection types:
 
@@ -165,7 +175,7 @@ Project/
 │   │   ├── traffic_manager.go      # Main manager
 │   │   └── vehicle_operations.go   # Vehicle control
 │   ├── models/             # Data structures
-│   └── main.go             # Entry point
+│   └── main.go             # Main server module
 ├── python/                 # Python middleware
 │   └── main.py             # TraCI client
 ├── sumo/                   # SUMO configuration files
