@@ -20,7 +20,6 @@ Author: Lukáš Lovás
 [![Go Version](https://img.shields.io/badge/Go-1.24+-00ADD8.svg)](https://go.dev/)
 [![Python Version](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![SUMO Version](https://img.shields.io/badge/SUMO-1.20+-green.svg)](https://www.eclipse.org/sumo/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 V2X-Platooning is a traffic management system that implements Virtual Platooning algorithms to optimize traffic flow at intersections. The system uses vehicle-to-everything (V2X) communication to coordinate the movement of connected vehicles, reducing congestion and improving efficiency.
 
