@@ -24,8 +24,6 @@ Author: Lukáš Lovás
 
 V2X-Platooning is a traffic management system that implements Virtual Platooning algorithms to optimize traffic flow at intersections. The system uses vehicle-to-everything (V2X) communication to coordinate the movement of connected vehicles, reducing congestion and improving efficiency.
 
-![System Demo](docs/images/system_demo.png)
-
 ## 🚀 Features
 
 - **Virtual Platooning**: Dynamic grouping of vehicles for coordinated intersection traversal
@@ -46,18 +44,10 @@ The system consists of three main components:
 ```
 ┌────────────────┐      ┌─────────────────┐      ┌───────────────┐
 │                │      │                 │      │               │
-│  SUMO          │◄────►│  Python         │◄────►│  Go Traffic   │
-│  Simulator     │ TraCI│  Middleware     │  TCP │  Manager      │
+│  SUMO          │◄────►│  Python         │◄────►│  Go Server    │
+│  Simulator     │ TraCI│  Middleware     │  TCP │               │
 │                │      │                 │      │               │
 └────────────────┘      └─────────────────┘      └───────────────┘
-                                                        │
-                                                        ▼
-                                                 ┌───────────────┐
-                                                 │               │
-                                                 │  Web          │
-                                                 │  Dashboard    │
-                                                 │               │
-                                                 └───────────────┘
 ```
 
 ## 🛠️ Installation
@@ -111,7 +101,7 @@ The system consists of three main components:
    python main.py
    ```
 
-4. Access the web dashboard at: http://localhost:8080
+4. Access the web dashboard at: http://localhost:8080 (Work in progress)
 
 ## 🔧 Configuration
 
@@ -151,8 +141,8 @@ Benchmark results are saved in the `statistics` directory in CSV and JSON format
 The system supports multiple intersection types:
 
 1. **Standard Crossroad (+)**: Four-way intersection (city.net.xml)
-2. **Highway with Exits**: Straight road with branches (dialnica.net.xml)
-3. **Complex Intersection**: Multi-lane intersection with various connections (krizovatka2.net.xml)
+2. **Highway with Exits**: Straight road with branches (krizovatka2.net.xml)
+3. **Complex Intersection**: Multi-lane intersection with various connections (dialnica.net.xml)
 
 To switch between intersection types, simply use a different SUMO configuration file.
 
@@ -172,16 +162,15 @@ The system collects the following performance metrics:
 
 ```
 Project/
-├── go/                     # Go server implementation
+├── go/                     
 │   ├── communication/      # Communication protocol
-│   ├── manager/            # Platooning logic
+│   ├── manager/            # Platooning and intersection logic
 │   │   ├── benchmark.go    # Performance measurement
 │   │   ├── intersection_manager.go # Intersection control
 │   │   ├── platoon_operations.go   # Platoon management
 │   │   ├── traffic_manager.go      # Main manager
 │   │   └── vehicle_operations.go   # Vehicle control
 │   ├── models/             # Data structures
-│   ├── web/                # Web interface
 │   └── main.go             # Entry point
 ├── python/                 # Python middleware
 │   └── main.py             # TraCI client
@@ -191,9 +180,8 @@ Project/
 │   ├── city.sumocfg        # SUMO configuration
 │   ├── dialnica.net.xml    # Highway with exits network
 │   ├── dialnica.rou.xml
-│   ├── krizovatka2.net.xml # Complex intersection network
+│   ├── krizovatka2.net.xml # Simple intersection with branches
 │   └── krizovatka2.rou.xml
-└── package.json            # Web dashboard dependencies
 ```
 
 ## 📖 Algorithm Description
@@ -219,20 +207,5 @@ Platooning operations include:
 The intersection management strategy includes:
 - **Reservation System**: Time slot reservation for platoons
 - **Priority Assignment**: Based on platoon size and waiting time
-- **Conflict Prevention**: Compatibility check of vehicle movements
+- **Conflict Prevention**: Compatibility check of vehicle movements to prevent conflict points
 - **Dynamic Speed Adjustment**: Smoothing traffic flow through intersections
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 📚 References
-
-- [SUMO Documentation](https://sumo.dlr.de/docs/)
-- [TraCI Documentation](https://sumo.dlr.de/docs/TraCI.html)
-- Zhou, et al. (2022) "Vehicle-to-Everything Based Virtual Platooning for Intelligent Traffic Management"
-- Parvini, et al. (2024) "Coordinated Intersection Control for Connected and Autonomous Vehicles"
