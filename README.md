@@ -106,6 +106,69 @@ The system consists of three main components:
    python main.py
    ```
 
+# Main Simulation Loop and Key Methods
+The system operates through an iterative simulation loop that processes vehicle data and makes traffic management decisions in real-time:
+Simulation Loop Cycle
+
+Data Collection: Python middleware collects vehicle data from SUMO
+Data Transmission: Vehicle data is sent to the Go server
+State Update: Server updates its internal model of vehicles and platoons
+Analysis & Decision: Server runs the Virtual Platooning algorithm
+Command Generation: Server creates speed commands for vehicles
+Command Transmission: Commands are sent back to the middleware
+Command Execution: Middleware applies commands to vehicles in SUMO
+Visualization: Current state is displayed in SUMO and the web dashboard
+
+Key Methods
+The main processing cycle in the Go server is implemented in the TrafficManager.Update() method, which calls these key methods in each iteration:
+Update(): 
+
+
+
+
+UpdatePlatoons()
+
+Updates leader-follower relationships between vehicles
+Forms and updates platoons based on vehicle relationships
+Cleans up empty or invalid platoons
+Checks for transitions between road segments
+Consolidates nearby platoons for optimization
+
+EstimatePlatoonStability()
+
+Analyzes platoon stability based on how long vehicles remain in the same platoon
+Allows higher speeds for stable platoons
+
+ReservePlatoonIntersectionSlots()
+
+Identifies platoons approaching intersections
+Estimates time of arrival at intersections
+Creates time-slot reservations for crossing
+Checks for conflicts with existing reservations
+
+ManageIntersections()
+
+Updates platoon waiting times at intersections
+Assigns priority to platoons with long waiting times
+Processes reservations and checks for conflicts
+Grants priority to platoons based on scoring
+Allows concurrent crossing for non-conflicting trajectories
+
+SynchronizeSpeeds()
+
+Sets vehicle speeds based on distance to the vehicle ahead
+Assigns optimal speed to platoon leaders with reservations
+Synchronizes follower speeds with their leader
+Reduces speed for vehicles without priority
+
+AdjustSpeedForTrafficDensity()
+
+Adjusts speeds based on current traffic density
+Allows higher speeds for larger platoons in lighter traffic
+Dynamically adjusts maximum allowed speeds based on conditions
+
+The Python middleware implements a similar cycle that handles the SUMO simulation and communication with the Go server.
+
    
 ## 🔧 Configuration
 
